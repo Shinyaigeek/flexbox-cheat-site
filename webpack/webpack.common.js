@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 module.exports = {
     entry: path.resolve(__dirname, `../src/Index.tsx`),
@@ -55,5 +56,23 @@ module.exports = {
             filename: 'index.html',
             template: 'static/html/index.html',
         }),
+        new WebpackPwaManifest({
+            name: 'Flexbox Cheat Site',
+            short_name: 'Flexbox Cheat Site',
+            description: 'CSS Flexbox | エンジニア&デザイナーのためのWebチートシート',
+            background_color: '#63b3ed',
+            crossorigin: 'use-credentials',
+            icons: [
+                {
+                    src: path.resolve('static/image/flexbox-cheat-site-icon.png'),
+                    sizes: [96, 128, 192, 256, 384, 512, 1024],
+                },
+                {
+                    src: path.resolve('static/image/ogp.png'),
+                    size: '1024x1024',
+                    purpose: 'maskable',
+                },
+            ],
+        })
     ],
 };
